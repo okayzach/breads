@@ -2,7 +2,7 @@ const React = require('react')
 const bread = require('../models/bread')
 const Default = require('./layouts/Default')
 
-function Edit () {
+function Edit ({bread, index}) {
     return (
       <Default>
         <h2>Edit a bread</h2>
