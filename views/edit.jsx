@@ -2,11 +2,11 @@ const React = require('react')
 const bread = require('../models/bread')
 const Default = require('./layouts/Default')
 
-function Edit ({bread, index}) {
+function Edit ({bread, bakers}) {
     return (
       <Default>
         <h2>Edit a bread</h2>
-        <form action={`/breads/${index}?_method=PUT`} method="POST">
+        <form action={`/breads/${bread.id}?_method=PUT`} method="POST">
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -15,12 +15,24 @@ function Edit ({bread, index}) {
             required
             defaultValue={bread.name}
           />
+          <label htmlFor="baker">Baker</label>
+          <select 
+            name="baker" 
+            id="baker"
+            defaulltValue={bread.baker}>
+              {bakers.map((baker) => {
+                return(
+                    <option value={baker.id} key={baker.id}>{baker.name}</option>
+                )
+            })}
+          </select>
           <label htmlFor="image">Image</label>
           <input
             type="text"
             name="image"
-            id="image"/>
+            id="image"
             defaultValue={bread.image}
+          />
           <label htmlFor="hasGluten">Has Gluten?</label>
           <input
             type="checkbox"
